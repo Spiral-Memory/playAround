@@ -118,7 +118,6 @@ textarea{
 .received-chat-profile img,
 .outgoing-chat-profile img{
 
-    display: inline-block;
     width:28px;
     float: left;
 }
@@ -134,7 +133,7 @@ textarea{
     display: inline-block;
     margin-top: 0.5%;
     margin-left: 2%;
-    
+    margin-right: 1%;
     font-size: 17px;
 }
 
@@ -164,6 +163,7 @@ textarea{
 }
 
 .received-msg p {
+    margin-top: 5px;
    background: #141313 none repeat scroll 0 0;
    color:rgb(58, 206, 58);
    font-size: 14px;
@@ -184,13 +184,13 @@ textarea{
 }
 
 .outgoing-msg p{
-    float: left;
+    margin-top: 5px; 
     background: #141313 none repeat scroll 0 0;
-   color:rgb(58, 206, 58);
-   font-size: 14px;
-   font-weight: 500;
-   width: 100%;
-   margin-bottom: 0px;
+    color:rgb(58, 206, 58);
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 0px;
 }
 
 
@@ -252,4 +252,4 @@ textarea{
 
 .attach{
     left :2%;
-}; */
+} */
