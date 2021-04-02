@@ -10,7 +10,7 @@ io.on('connection',socket =>{
      })
       socket.on('send-chat-message',datamessage => {
           if(datamessage.nameofme!=null){
-              socket.broadcast.emit('chat-message',{datamessage:datamessage.message,name1:datamessage.nameofme});
+              socket.broadcast.emit('chat-message',{datamessage:datamessage.message});
           }
     })
 
