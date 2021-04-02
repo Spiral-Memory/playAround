@@ -23,7 +23,7 @@ let keysPressed = {};
     socket.on('chat-message', data => {
         if(count!=0){
             appendMessageR(`${data.datamessage}`, `${data.name1}`);
-            window.scrollTo(0, document.body.scrollHeight);
+          
         }
        
     })
@@ -108,6 +108,7 @@ function appendMessageR(req_info, nameinfo) {
     paragraph.innerText = req_info;
     rec_msg.append(paragraph);
     mainBody.append(rec_element);
+     window.scrollTo(0, document.body.scrollHeight);
 }
 
 function appendMessageS(req_info, nameinfo) {
@@ -135,6 +136,7 @@ function appendMessageS(req_info, nameinfo) {
     timeElement.innerText = `    ${hours}:${minutes} | ${month_in_str} ${datetoday}`;
     rec_msg.append(timeElement);
     mainBody.append(rec_element);
+     window.scrollTo(0, document.body.scrollHeight);
 }
 
 
@@ -143,7 +145,7 @@ function msgsend() {
         const message = messageInput.value;
         socket.emit('send-chat-message', { message: message, nameofme: myname });
         appendMessageS(message, `${myname}`);
-        window.scrollTo(0, document.body.scrollHeight);
+       
         messageInput.focus();
         messageInput.value = '';
     }
