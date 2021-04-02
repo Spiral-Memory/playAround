@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" text="text/css" href="style.css">
 
-   
+
 
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
-        <script defer src="https://zishuchatserver.herokuapp.com/socket.io/socket.io.js"></script>
-        <script defer src="script.js"></script>
+    <script defer src="https://zishuchatserver.herokuapp.com/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
     <title>Chat_UI</title>
 </head>
 
@@ -26,31 +26,54 @@
                 <h4>#PlayAround</h4>
             </div>
             <div class="room-header-icons">
-                <ion-icon name="information-outline" class = "fa"></ion-icon>
-                <ion-icon name="people-outline" class = "fa"></ion-icon>
-                <ion-icon name="volume-mute-outline" class = "fa"></ion-icon>
-              
+                <ion-icon name="information-outline" class="fa"></ion-icon>
+                <ion-icon name="people-outline" class="fa"></ion-icon>
+                <ion-icon name="volume-mute-outline" class="fa"></ion-icon>
+
 
             </div>
         </div>
 
-        <div class="chat-body" id = "chatBody">
+        <div class="chat-body" id="chatBody">
             <!-- Everything will be dynamically added here  -->
         </div>
-        <div class = "footer">
-            <form id="send-container"  autocomplete="off">
-                <textarea id="message-input" placeholder="Type Your Message...." autocomplete="off"  name="hidden" ></textarea>
-                <div class="footer-icons">
-                    <ion-icon name="paper-plane-outline" class = "fa plane" id = "sendButton"></ion-icon>
-                    <ion-icon name="happy-outline" class = "fa happy" ></ion-icon>
-                    <ion-icon name="attach-outline" class = "fa attach"></ion-icon>
-                 
+
+        <div class="modal active" id="modal">
+            <div class="modal-header">
+                <img src="https://avatars.dicebear.com/api/jdenticon/.svg" id="nameicon">
+            </div>
+            <form>
+                <div class="modal-body">
+
+                    <input type="text" maxlength="512" class="input-your-name" id="nameText"
+                        placeholder="What's Your Name ?" autocomplete="off" value="">
+                    <div class="modal-buttons">
+                        <button class = "submit-name" id="submitName">Join the Room</button>
+                        <ion-icon name="enter-outline" class="fa" id="SubmitNameIcon"></ion-icon>
+                    </div>
+
+
                 </div>
-              </form>
+            </form>
         </div>
-    
-      
-    </div> 
+
+        <div class="footer">
+            <form id="send-container" autocomplete="off">
+                <textarea id="message-input" placeholder="Type Your Message...." autocomplete="off"
+                    name="hidden"></textarea>
+                <div class="footer-icons">
+                    <ion-icon name="paper-plane-outline" class="fa plane" id="sendButton"></ion-icon>
+                    <ion-icon name="happy-outline" class="fa happy"></ion-icon>
+                    <ion-icon name="attach-outline" class="fa attach"></ion-icon>
+
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div id="overlay" class="active"></div>
 </body>
 
 </html>
