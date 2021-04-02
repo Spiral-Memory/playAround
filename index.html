@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +16,12 @@
 </head>
 
 <body>
+    <audio id = "incoming">
+        <source src = "incoming_tone.mp3">
+    </audio>
+    <audio id = "outgoing">
+        <source src = "outgoing_tone.mp3">
+    </audio>
     <div class="chatui">
         <div class="room-header">
             <div class="room-header-img">
@@ -28,7 +33,8 @@
             <div class="room-header-icons">
                 <ion-icon name="information-outline" class="fa"></ion-icon>
                 <ion-icon name="people-outline" class="fa"></ion-icon>
-                <ion-icon name="volume-mute-outline" class="fa"></ion-icon>
+                <ion-icon name="notifications-outline" class="fa" id = "notification-toggle"></ion-icon>
+            
 
 
             </div>
