@@ -9,8 +9,12 @@ const nameInput = document.getElementById('nameText');
 const overlay = document.getElementById('overlay');
 const modal = document.getElementById('modal');
 const nameIcon = document.getElementById('nameicon');
+const notiToggle= document.getElementById('notification-toggle');
+const incomingtone = document.getElementById('incoming');
+const outgoing = document.getElementById('outgoing');
 let myname ="Anonymous";
 let count = 0;
+let soundcount = 1;
 nameInput.focus();
 let month_in_str;
 let year;
@@ -23,7 +27,7 @@ let keysPressed = {};
     socket.on('chat-message', data => {
         if(count!=0){
             appendMessageR(`${data.datamessage}`, `${data.name1}`);
-          
+            window.scrollTo(0, document.body.scrollHeight);
         }
        
     })
@@ -56,13 +60,24 @@ submitNameElement.addEventListener('click', e=> {
 })
 messageInput.addEventListener('keydown', e => {
     if(count!=0){
-        console.log(e);
         keysPressed[e.key] = true;
         if (keysPressed['Control'] && e.key == 'Enter') {
             msgsend();
         }
     }
    
+})
+
+notiToggle.addEventListener('click', function(){
+    if(soundcount ==1){
+        notiToggle.name = "notifications-off-outline";
+        soundcount = 0;
+    }
+
+    else if(soundcount ==0){
+        soundcount = 1;
+        notiToggle.name = "notifications-outline";
+    }
 })
 
 document.addEventListener('keyup', e => {
@@ -85,6 +100,10 @@ submitElement.addEventListener('click', function () {
 
 function appendMessageR(req_info, nameinfo) {
     timendate();
+    if(soundcount!=0){
+        incomingtone.play();
+    }
+    
     let rec_element = document.createElement('div');
     rec_element.className = "received-chats";
     let user_profile = document.createElement('div');
@@ -108,11 +127,14 @@ function appendMessageR(req_info, nameinfo) {
     paragraph.innerText = req_info;
     rec_msg.append(paragraph);
     mainBody.append(rec_element);
-     window.scrollTo(0, document.body.scrollHeight);
+    
 }
 
 function appendMessageS(req_info, nameinfo) {
     timendate();
+    if(soundcount!=0){
+    outgoing.play();
+    }
     let rec_element = document.createElement('div');
     rec_element.className = "outgoing-chats";
     let user_profile = document.createElement('div');
@@ -136,7 +158,7 @@ function appendMessageS(req_info, nameinfo) {
     timeElement.innerText = `    ${hours}:${minutes} | ${month_in_str} ${datetoday}`;
     rec_msg.append(timeElement);
     mainBody.append(rec_element);
-     window.scrollTo(0, document.body.scrollHeight);
+  
 }
 
 
@@ -145,14 +167,13 @@ function msgsend() {
         const message = messageInput.value;
         socket.emit('send-chat-message', { message: message, nameofme: myname });
         appendMessageS(message, `${myname}`);
-       
+        window.scrollTo(0, document.body.scrollHeight);
         messageInput.focus();
         messageInput.value = '';
     }
 }
 
 function thingsaftersubmit(){
-    console.log(nameInput.value);
     myname = nameInput.value;
     if(myname.length!=0){
         appendMessageS(`Hey, I joined`, `${myname}`);
