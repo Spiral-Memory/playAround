@@ -3,8 +3,14 @@ const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 const submitElement = document.getElementById('sendButton');
 const mainBody = document.getElementById('chatBody');
-const submitName = document.getElementById('nameSubmit');
-const myname = prompt("What's your Name");
+const submitNameElement = document.getElementById('submitName');
+const submitIcon =  document.getElementById('SubmitNameIcon');
+const nameInput = document.getElementById('nameText');
+const overlay = document.getElementById('overlay');
+const modal = document.getElementById('modal');
+const nameIcon = document.getElementById('nameicon');
+let myname ="Anonymous";
+let count = 0;
 messageInput.focus();
 let month_in_str;
 let year;
@@ -12,45 +18,69 @@ let datetoday;
 let hours;
 let minutes;
 let keysPressed = {};
-appendMessageS(`Hey, I joined`, `${myname}`);
-socket.emit('send-username', myname);
 
-socket.on('chat-message', data => {
-    appendMessageR(`${data.datamessage}`, `${data.name1}`);
-    window.scrollTo(0, document.body.scrollHeight);
-})
 
-socket.on('user-connected', name => {
-    appendMessageR("Hey, I joined", name);
-   
-})
+    socket.on('chat-message', data => {
+        if(count!=0){
+            appendMessageR(`${data.datamessage}`, `${data.name1}`);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+       
+    })
+    
+    socket.on('user-connected', name => {
+        if(count!=0)
+        appendMessageR("Hey, I joined", name);
+    
+    })
+
 
 
 // socket.on('user-disconnected', name => {
 //     appendMessageR("B Bye! 👋 ", name);
 //     window.scrollTo(0, document.body.scrollHeight);
 // })
-messageInput.addEventListener('keydown',e=>{
-    console.log(e);
-    keysPressed[e.key] = true;
-    if (keysPressed['Control'] && e.key =='Enter') {
-      msgsend();
+
+nameInput.addEventListener('keyup', e=>{
+    console.log(nameInput.value);
+    nameIcon.src = `https://avatars.dicebear.com/api/jdenticon/${nameInput.value}.svg`;
+})
+submitIcon.addEventListener('click', function() {
+    thingsaftersubmit();
+
+})
+submitNameElement.addEventListener('click', e=> {
+    e.preventDefault();
+    thingsaftersubmit();
+
+})
+messageInput.addEventListener('keydown', e => {
+    if(count!=0){
+        console.log(e);
+        keysPressed[e.key] = true;
+        if (keysPressed['Control'] && e.key == 'Enter') {
+            msgsend();
+        }
     }
+   
 })
 
-document.addEventListener('keyup',e=>{
+document.addEventListener('keyup', e => {
+    if(count!=0)
     delete keysPressed[e.key];
 })
 
 messageForm.addEventListener('submit', e => {
     e.preventDefault();
+    if(count!=0)
     msgsend();
-  
+
 })
 
 submitElement.addEventListener('click', function () {
-   msgsend();
-    
+    if(count!=0)
+    msgsend();
+
 })
 
 function appendMessageR(req_info, nameinfo) {
@@ -108,15 +138,28 @@ function appendMessageS(req_info, nameinfo) {
 }
 
 
-function msgsend(){
-    if(messageInput.value != ''){
+function msgsend() {
+    if (messageInput.value != '') {
         const message = messageInput.value;
-        socket.emit('send-chat-message', {message:message,nameofme:myname}) ;
+        socket.emit('send-chat-message', { message: message, nameofme: myname });
         appendMessageS(message, `${myname}`);
         window.scrollTo(0, document.body.scrollHeight);
         messageInput.focus();
         messageInput.value = '';
-        }
+    }
+}
+
+function thingsaftersubmit(){
+    console.log(nameInput.value);
+    myname = nameInput.value;
+    if(myname.length!=0){
+        appendMessageS(`Hey, I joined`, `${myname}`);
+        socket.emit('send-username', myname);
+        count = 1;
+        overlay.classList.remove('active');
+        modal.classList.remove('active');
+    }
+   
 }
 
 function timendate() {
