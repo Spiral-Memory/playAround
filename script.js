@@ -11,7 +11,7 @@ const modal = document.getElementById('modal');
 const nameIcon = document.getElementById('nameicon');
 let myname ="Anonymous";
 let count = 0;
-messageInput.focus();
+nameInput.focus();
 let month_in_str;
 let year;
 let datetoday;
@@ -158,6 +158,7 @@ function thingsaftersubmit(){
         count = 1;
         overlay.classList.remove('active');
         modal.classList.remove('active');
+        messageInput.focus();
     }
    
 }
