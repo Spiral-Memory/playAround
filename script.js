@@ -40,11 +40,6 @@ let keysPressed = {};
 //     appendMessageR("B Bye! 👋 ", name);
 //     window.scrollTo(0, document.body.scrollHeight);
 // })
-messageInput.addEventListener('keydown',e=>{
-    console.log(e);
-    keysPressed[e.key] = true;
-    if (keysPressed['Control'] && e.key === 'Enter') {
-      msgsend();
 
 nameInput.addEventListener('keyup', e=>{
     console.log(nameInput.value);
