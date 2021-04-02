@@ -9,7 +9,9 @@ io.on('connection',socket =>{
          socket.broadcast.emit('user-connected',nameofuser)
      })
       socket.on('send-chat-message',datamessage => {
-           socket.broadcast.emit('chat-message',{datamessage:datamessage.message,name1:datamessage.nameofme});
+          if(datamessage.nameofme!=null){
+              socket.broadcast.emit('chat-message',{datamessage:datamessage.message,name1:datamessage.nameofme});
+          }
     })
 
     // socket.on('disconnect',()=>{

@@ -3,7 +3,6 @@ const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 const submitElement = document.getElementById('sendButton');
 const mainBody = document.getElementById('chatBody');
-const inputElement = document.getElementById('inputBox');
 const submitName = document.getElementById('nameSubmit');
 const myname = prompt("What's your Name");
 messageInput.focus();
@@ -12,7 +11,7 @@ let year;
 let datetoday;
 let hours;
 let minutes;
-
+let keysPressed = {};
 appendMessageS(`Hey, I joined`, `${myname}`);
 socket.emit('send-username', myname);
 
@@ -31,29 +30,27 @@ socket.on('user-connected', name => {
 //     appendMessageR("B Bye! 👋 ", name);
 //     window.scrollTo(0, document.body.scrollHeight);
 // })
-
-
-messageForm.addEventListener('submit', e => {
-    e.preventDefault();
-    if(messageInput.value != ''){
-    const message = messageInput.value;
-    socket.emit('send-chat-message', {message:message,nameofme:myname}) ;
-    appendMessageS(message, `${myname}`);
-    window.scrollTo(0, document.body.scrollHeight);
-    messageInput.focus();
-    messageInput.value = '';
+messageInput.addEventListener('keydown',e=>{
+    console.log(e);
+    keysPressed[e.key] = true;
+    if (keysPressed['Control'] && e.keyCode === 13) {
+      msgsend();
     }
 })
 
+document.addEventListener('keyup',e=>{
+    delete keysPressed[e.key];
+})
+
+messageForm.addEventListener('submit', e => {
+    e.preventDefault();
+    msgsend();
+  
+})
+
 submitElement.addEventListener('click', function () {
-    if(messageInput.value != ''){
-    const message = messageInput.value;
-    socket.emit('send-chat-message', {message:message,nameofme:myname}) ;
-    appendMessageS(message, `${myname}`);
-    window.scrollTo(0, document.body.scrollHeight); 
-    messageInput.focus();
-    messageInput.value = '';
-    }
+   msgsend();
+    
 })
 
 function appendMessageR(req_info, nameinfo) {
@@ -110,6 +107,17 @@ function appendMessageS(req_info, nameinfo) {
     mainBody.append(rec_element);
 }
 
+
+function msgsend(){
+    if(messageInput.value != ''){
+        const message = messageInput.value;
+        socket.emit('send-chat-message', {message:message,nameofme:myname}) ;
+        appendMessageS(message, `${myname}`);
+        window.scrollTo(0, document.body.scrollHeight);
+        messageInput.focus();
+        messageInput.value = '';
+        }
+}
 
 function timendate() {
     var d = new Date();
