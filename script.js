@@ -33,7 +33,7 @@ socket.on('user-connected', name => {
 messageInput.addEventListener('keydown',e=>{
     console.log(e);
     keysPressed[e.key] = true;
-    if (keysPressed['Control'] && e.keyCode === 13) {
+    if (keysPressed['Control'] && e.key === 'Enter') {
       msgsend();
     }
 })
