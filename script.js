@@ -39,14 +39,8 @@ let keysPressed = {};
     })
 
 
-
-// socket.on('user-disconnected', name => {
-//     appendMessageR("B Bye! 👋 ", name);
-//     window.scrollTo(0, document.body.scrollHeight);
-// })
-
 nameInput.addEventListener('keyup', e=>{
-    nameIcon.src = `https://avatars.dicebear.com/api/jdenticon/${nameInput.value}.svg`;
+    nameIcon.src = `https://api.dicebear.com/9.x/bottts/svg?seed=${nameInput.value}`;
 })
 submitIcon.addEventListener('click', function() {
     thingsaftersubmit();
@@ -108,7 +102,7 @@ function appendMessageR(req_info, nameinfo) {
     let user_profile = document.createElement('div');
     user_profile.className = "received-chat-profile";
     let pic = document.createElement('img');
-    pic.src = `https://avatars.dicebear.com/api/jdenticon/${nameinfo}.svg`;
+    pic.src = `https://api.dicebear.com/9.x/bottts/svg?seed=${nameinfo}`;
     let nameElement = document.createElement('span');
     nameElement.className = "name-other";
     nameElement.innerText = `${nameinfo}`;
@@ -139,7 +133,7 @@ function appendMessageS(req_info, nameinfo) {
     let user_profile = document.createElement('div');
     user_profile.className = "outgoing-chat-profile";
     let pic = document.createElement('img');
-    pic.src = `https://avatars.dicebear.com/api/jdenticon/${nameinfo}.svg`;
+    pic.src = `https://api.dicebear.com/9.x/bottts/svg?seed=${nameinfo}`;
     let nameElement = document.createElement('span');
     nameElement.className = "name-me";
     nameElement.innerText = `You`;
