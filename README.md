@@ -59,6 +59,15 @@ Ensure your `script.js` connects to the correct server URL (`io('http://localhos
 
 ---
 
+## ✍️ To-Do
+
+- [ ] Support attachments (files, images)
+- [ ] Add emoji support
+- [ ] Implement group chat
+- [ ] Show active members
+
+---
+
 ## 🤝 Credits
 
 * [DiceBear Avatars](https://dicebear.com/)
@@ -67,6 +76,6 @@ Ensure your `script.js` connects to the correct server URL (`io('http://localhos
 
 ---
 
-## 🙌 Acknowledgments
+## 💡 Contributions
 
-Built with care by Zishan Ahmad, combining the elegance of traditional UI with the fluidity of modern web apps.
+Contributions are very welcome! Whether it's fixing bugs, improving the UI, adding new features like attachments or group chat, or helping with documentation — feel free to open issues or submit pull requests.
