@@ -1,4 +1,4 @@
-const socket = io('https://zchatserver.glitch.me/')
+const socket = io('https://zserverplay.onrender.com/')
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 const submitElement = document.getElementById('sendButton');

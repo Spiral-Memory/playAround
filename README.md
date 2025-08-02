@@ -24,7 +24,7 @@ Playaround is a simple and elegant real-time chat app built with vanilla JavaScr
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Node.js with Socket.io (served via Glitch)
+- **Backend**: Node.js with Socket.io (served via Render)
 - **Avatars**: DiceBear Bottts API
 - **Sounds**: Custom audio for incoming and outgoing messages
 
@@ -43,7 +43,7 @@ cd playAround
 
 Either:
 
-* Use my existing Glitch server (e.g., `https://zchatserver.glitch.me/`)
+* Use my existing Render server (e.g., `https://zserverplay.onrender.com`)
 * Or spin up a local Node.js server using the minimal setup provided in the Server_Code folder:
 
 Run with:
@@ -55,7 +55,7 @@ node server.js
 
 3. **Open index.html in a browser**
 
-Ensure your `script.js` connects to the correct server URL (`io('http://localhost:3000')` or Glitch URL).
+Ensure your `script.js` connects to the correct server URL (`io('http://localhost:3000')` or Render URL).
 
 ---
 
@@ -72,7 +72,7 @@ Ensure your `script.js` connects to the correct server URL (`io('http://localhos
 
 * [DiceBear Avatars](https://dicebear.com/)
 * [Socket.io](https://socket.io/)
-* [Glitch](https://glitch.com/) for quick backend deployment
+* [Render](https://render.com/) for quick backend deployment
 
 ---
 
